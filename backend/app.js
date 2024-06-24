@@ -5,6 +5,7 @@ require("dotenv").config();
 
 const authRouter = require("./routes/api/auth");
 const dashboardRouter = require("./routes/api/dashboard");
+const orderRouter = require("./routes/api/order");
 
 const fs = require("fs/promises");
 const moment = require("moment");
@@ -27,6 +28,7 @@ app.use(async (req, res, next) => {
 
 app.use("/api/user", authRouter);
 app.use("/api/dashboard", dashboardRouter);
+app.use("/api/orders", orderRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });

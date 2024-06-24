@@ -58,7 +58,7 @@ const signOut = async (req, res) => {
   const { _id } = req.user;
   await User.findByIdAndUpdate(_id, { token: null });
 
-  res.json();
+  res.json("Done");
 };
 
 module.exports = {
