@@ -1,4 +1,4 @@
-const { Schema, model } = require("mogoose");
+const { Schema, model } = require("mongoose");
 const { emailRegExp } = require("../regExp/regExp");
 const dateValidator = require("../helpers/dateValidator");
 

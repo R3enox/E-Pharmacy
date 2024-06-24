@@ -1,7 +1,7 @@
-const { Order } = require("../models/order");
-const { ctrlWrapper, setPaginationOptions } = require("../helpers");
+const { Customer } = require("../models/customer");
+const { ctrlWrapper, setPaginationOptions, HttpError } = require("../helpers");
 
-const getListOrders = async (req, res, next) => {
+const getListCustomers = async (req, res, next) => {
   const { page = 1, limit = 5, name } = req.query;
 
   const filter = {};
@@ -14,7 +14,7 @@ const getListOrders = async (req, res, next) => {
       paginatedResult,
       totalCount: [{ totalCount } = { totalCount: 0 }],
     },
-  ] = await Order.aggregate([
+  ] = await Customer.aggregate([
     {
       $facet: {
         paginatedResult: [
@@ -31,6 +31,17 @@ const getListOrders = async (req, res, next) => {
   res.json({ paginatedResult, totalCount });
 };
 
+const getCustomerById = async (req, res) => {
+  const { customerId } = req.params;
+  console.log(customerId);
+  const result = await Customer.findById(customerId).select(
+    "-createdAt -updatedAt"
+  );
+  if (!result) throw HttpError(404, "Not found");
+  res.json(result);
+};
+
 module.exports = {
-  getListOrders: ctrlWrapper(getListOrders),
+  getListCustomers: ctrlWrapper(getListCustomers),
+  getCustomerById: ctrlWrapper(getCustomerById),
 };

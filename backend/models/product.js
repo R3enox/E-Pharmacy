@@ -16,10 +16,6 @@ const categories = [
 
 const productSchema = new Schema(
   {
-    id: {
-      type: Schema.Types.ObjectId,
-      required: [true, "Supplier id is required"],
-    },
     photo: { type: String, default: "" },
     name: { type: String, required: [true, "Customer info is required"] },
     suppliers: { type: String, required: [true, "Suppliers is required"] },
