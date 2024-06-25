@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const HeaderWrapper = styled.div`
   display: flex;
-  padding: 17px 20px;
+  padding: 17px 0;
   gap: 20px;
 `;
 

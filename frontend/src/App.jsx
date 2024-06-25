@@ -87,7 +87,6 @@ export const App = () => {
   }, [dispatch]);
   return (
     <AppWrapper>
-      <ToastContainer />
       <Routes>
         {appRoutesRestricted.map(({ path, element }) => (
           <Route key={path} path={path} element={element} />

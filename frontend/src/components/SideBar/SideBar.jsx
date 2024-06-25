@@ -62,7 +62,7 @@ export const SideBar = () => {
       <IconWrapper>
         <button className="iconBtn" onClick={toggleMenu}>
           <svg className="iconBurger">
-            <use href={sprite + '#icon-dashboard'} />
+            <use href={sprite + '#icon-burger-menu'} />
           </svg>
         </button>
         <div>
@@ -89,7 +89,7 @@ export const SideBar = () => {
               </ul>
               <button className="btnLogout" type="button" onClick={logOut}>
                 <svg className="iconLogout">
-                  <use href={sprite + '#icon-dashboard'} />
+                  <use href={sprite + '#icon-logout'} />
                 </svg>
               </button>
             </div>

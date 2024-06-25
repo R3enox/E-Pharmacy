@@ -6,7 +6,7 @@ export const AppWrapper = styled.div`
   width: 375px;
   margin-left: auto;
   margin-right: auto;
-  /* padding: 20px; */
+  padding: 20px;
 
   @media screen and (min-width: 768px) {
     width: 768px;

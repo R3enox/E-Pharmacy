@@ -120,6 +120,9 @@ export const SideBarMenu = styled.div`
   }
 
   .btnLogout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 38px;
     height: 38px;
     border: none;

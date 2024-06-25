@@ -9,14 +9,12 @@ import {
 } from 'redux-persist';
 import persistStore from 'redux-persist/es/persistStore';
 import { userReducer } from './user/userReducer';
-import { booksReducer } from './books/booksReducer';
-import { libraryReducer } from './library/libraryReducer';
+import { dashboardReducer } from './dashboard/dashboardReducer';
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
-    books: booksReducer,
-    library: libraryReducer,
+    dashboard: dashboardReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
