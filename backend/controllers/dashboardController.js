@@ -1,73 +1,57 @@
-const { Contact } = require("../models/contact.js");
+const { Product } = require("../models/product.js");
+const { Supplier } = require("../models/supplier.js");
+const { Customer } = require("../models/customer.js");
+const { Transaction } = require("../models/transaction.js");
+const { ctrlWrapper } = require("../helpers/index.js");
 
-const { HttpError, ctrlWrapper } = require("../helpers/index.js");
-
-const listContacts = async (req, res) => {
-  const { _id: owner } = req.user;
-  const { page = 1, limit = 2, favorite = null } = req.query;
-  const skip = (page - 1) * limit;
-  const search = { owner };
-
-  if (favorite !== null) {
-    search.favorite = favorite;
-  }
-  const result = await Contact.find(search, "-createdAt -updatedAt", {
-    skip,
-    limit,
-  }).populate("owner", "name email");
-  res.json(result);
+const SortOptions = {
+  CUSTOMERS: { updatedAt: -1 },
+  TRANSACTIONS: { createdAt: -1 },
 };
 
-const getContactById = async (req, res) => {
-  const { contactId } = req.params;
-  const result = await Contact.findById(contactId).select(
-    "-createdAt -updatedAt"
-  );
-  if (!result) throw HttpError(404, "Not found");
-  res.json(result);
+const Limits = {
+  CUSTOMERS: 5,
+  TRANSACTIONS: 6,
 };
 
-const addContact = async (req, res) => {
-  const { _id: owner } = req.user;
-  const result = await Contact.create({ ...req.body, owner });
-  const updatedResult = await Contact.findById(result._id).select(
-    "-createdAt -updatedAt"
-  );
-  res.status(201).json(updatedResult);
-};
+const getDashboard = async (req, res) => {
+  const dbReqPromises = [
+    Product.countDocuments({}),
+    Supplier.countDocuments({}),
+    Customer.countDocuments({}),
+    Customer.find().sort(SortOptions.CUSTOMERS).limit(Limits.CUSTOMERS),
+    Transaction.find()
+      .sort(SortOptions.TRANSACTIONS)
+      .limit(Limits.TRANSACTIONS),
+  ];
 
-const updateContact = async (req, res) => {
-  const { contactId } = req.params;
-  const result = await Contact.findByIdAndUpdate(contactId, req.body, {
-    new: true,
-  }).select("-createdAt -updatedAt");
-  if (!result) throw HttpError(404, "Not found");
-  res.json(result);
-};
+  console.log(dbReqPromises);
 
-const updateStatusContact = async (req, res) => {
-  const { contactId } = req.params;
-  const result = await Contact.findByIdAndUpdate(contactId, req.body, {
-    new: true,
-  }).select("-createdAt -updatedAt");
-  if (!result) throw HttpError(404, "Not found");
-  res.json(result);
-};
+  const [
+    productsQuantity,
+    suppliersQuantity,
+    customersQuantity,
+    recentCustomers,
+    recentTransactions,
+  ] = await Promise.all(dbReqPromises);
 
-const removeContact = async (req, res) => {
-  const { contactId } = req.params;
-  const result = await Contact.findByIdAndDelete(contactId);
-  if (!result) throw HttpError(404, "Not found");
-  res.json({
-    message: "Delete success",
+  console.log({
+    productsQuantity,
+    suppliersQuantity,
+    customersQuantity,
+    recentCustomers,
+    recentTransactions,
+  });
+
+  return res.json({
+    productsQuantity,
+    suppliersQuantity,
+    customersQuantity,
+    recentCustomers,
+    recentTransactions,
   });
 };
 
 module.exports = {
-  listContacts: ctrlWrapper(listContacts),
-  getContactById: ctrlWrapper(getContactById),
-  addContact: ctrlWrapper(addContact),
-  updateContact: ctrlWrapper(updateContact),
-  updateStatusContact: ctrlWrapper(updateStatusContact),
-  removeContact: ctrlWrapper(removeContact),
+  getDashboard: ctrlWrapper(getDashboard),
 };

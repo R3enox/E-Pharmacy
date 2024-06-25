@@ -2,13 +2,6 @@ const { Schema, model } = require("mongoose");
 
 const types = ["Expense", "Income"];
 
-// name;
-// ("Qonto billing");
-// amount;
-// ("-49.88");
-// type;
-// ("Expense");
-
 const transactionSchema = new Schema(
   {
     name: { type: String, required: true },
@@ -18,6 +11,6 @@ const transactionSchema = new Schema(
   { versionKey: false, timestamps: true }
 );
 
-const Transaction = model("transaction", transactionSchema);
+const Transaction = model("income-expenses", transactionSchema);
 
 module.exports = { Transaction };
