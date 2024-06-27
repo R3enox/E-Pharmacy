@@ -56,7 +56,7 @@ export const SideBarNew = ({ onCloseSidebar }) => {
 
   return (
     <IconWrapper>
-      <div>
+      <div className="wrapperBar">
         <SideBarMenu>
           <button className="iconBtn" type="button" onClick={onCloseSidebar}>
             <svg className="iconClose">

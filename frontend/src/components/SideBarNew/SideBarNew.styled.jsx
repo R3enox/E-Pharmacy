@@ -89,10 +89,9 @@ export const Button = styled.button`
 export const SideBarMenu = styled.div`
   position: fixed;
   top: 0;
-  left: 79px;
+  left: 80px;
   height: 100%;
   width: 78px;
-  /* background-color: #f7f8fa; */
   transform: translateX(-100%);
   transition: transform 0.3s ease-in-out;
   display: flex;
@@ -145,14 +144,14 @@ export const SideBarMenu = styled.div`
       width: 44px;
       height: 44px;
     }
-
-    .iconBtn {
-      display: none;
-    }
   }
 
   @media screen and (min-width: 1440px) {
     .btnLogout {
+      display: none;
+    }
+
+    .iconBtn {
       display: none;
     }
   }
