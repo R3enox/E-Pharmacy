@@ -44,7 +44,6 @@ const menuItems = [
 ];
 
 export const SideBarNew = ({ onCloseSidebar }) => {
-  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -72,6 +71,7 @@ export const SideBarNew = ({ onCloseSidebar }) => {
                       !isActive ? 'sideLink' : 'active'
                     }
                     to={item.path}
+                    onClick={onCloseSidebar}
                   >
                     <button className="iconBtnNav">{item.icon}</button>
                   </NavLink>
