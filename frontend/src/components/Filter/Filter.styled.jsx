@@ -17,8 +17,12 @@ const getBorderColorByValidationResult = (p) => {
 export const Form = styled.form`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: ${(p) => p.theme.spacing(2)};
 
+  @media screen and (min-width: 375px) {
+    justify-content: flex-end;
+  }
   @media screen and (min-width: 768px) {
     gap: ${(p) => p.theme.spacing(3.5)};
   }
@@ -34,7 +38,7 @@ export const InputName = styled(Input)`
   }
 `;
 
-export const SubmitBtn = styled.button`
+export const ActionBtn = styled.button`
   align-self: start;
   display: flex;
   align-items: center;

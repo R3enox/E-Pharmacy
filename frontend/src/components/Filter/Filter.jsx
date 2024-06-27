@@ -3,7 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import sprite from '../../assets/sprite.svg';
 import { Message } from '../Message/Message';
-import { Form, IconFilter, InputName, SubmitBtn } from './Filter.styled';
+import { Form, IconFilter, InputName, ActionBtn } from './Filter.styled';
 
 const filterSchema = (fieldName) =>
   Yup.object().shape({
@@ -29,6 +29,10 @@ export const Filter = ({
     onFilterSubmit(data.name);
   };
 
+  const handleFilterReset = () => {
+    onFilterSubmit('');
+  };
+
   const isCorrectName = dirtyFields.name && !errors.name;
   const hasErrorName = errors.name;
 
@@ -44,12 +48,15 @@ export const Filter = ({
         />
       </Message>
 
-      <SubmitBtn type="submit" disabled={isLoading}>
+      <ActionBtn type="submit" disabled={isLoading}>
         <IconFilter>
           <use href={sprite + '#icon-filter'}></use>
         </IconFilter>
         Filter
-      </SubmitBtn>
+      </ActionBtn>
+      <ActionBtn type="reset" disabled={isLoading} onClick={handleFilterReset}>
+        Reset
+      </ActionBtn>
     </Form>
   );
 };
