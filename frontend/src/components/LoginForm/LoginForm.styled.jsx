@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import DecorIMG from '../../assets/img/login/decor-elements.webp';
 
 export const Section = styled.section`
   padding: 24px 20px;
@@ -114,5 +115,30 @@ export const Section = styled.section`
       display: flex;
       flex-direction: column;
     }
+  }
+`;
+
+export const DecorImg = styled.div`
+  position: fixed;
+  right: -206px;
+  bottom: -199px;
+  z-index: -1;
+
+  width: 464px;
+  height: 345px;
+
+  background-image: url(${DecorIMG});
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+
+  @media screen and (min-width: 768px) {
+    right: -198px;
+    bottom: -82px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    right: -185px;
+    bottom: -88px;
   }
 `;

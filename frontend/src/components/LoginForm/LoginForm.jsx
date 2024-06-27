@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logInThunk } from '../../redux/user/userOperations';
-import { Section } from './LoginForm.styled';
+import { DecorImg, Section } from './LoginForm.styled';
 import { toastSuccess } from '../../helpers/toast';
 import * as img from '../../assets/img/login/index';
 
@@ -132,6 +132,7 @@ export const LoginForm = () => {
           </button>
         </div>
       </form>
+      <DecorImg />
     </Section>
   );
 };
