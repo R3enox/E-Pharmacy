@@ -3,7 +3,7 @@ import { store } from '../redux/store';
 import { setTokens } from '../redux/user/userReducer';
 
 const instance = axios.create({
-  baseURL: 'http://localhost:3000/api',
+  baseURL: 'https://e-pharmacy-8rjm.onrender.com/api',
 });
 
 export const setAuthToken = (token) => {

@@ -69,7 +69,6 @@ const AllOrdersPage = () => {
           <Paginator totalCount={orders.totalCount} setPage={setPage} />
         </>
       )}
-      {/* {loading && <Loader />} */}
       {hasError && (
         <WrapperPlaceholder>
           <Placeholder>Oops... {error}</Placeholder>

@@ -1,13 +1,7 @@
 import { useEffect } from 'react';
 import sprite from '../../assets/sprite.svg';
-import {
-  Backdrop,
-  BtnClose,
-  IconCross,
-  LogOutWrapper,
-  Wrapper,
-} from './SideBar.styled';
-import { BtnLogOut } from '../LogOutBtn/LogOutBtn.styled';
+import { Backdrop, Wrapper } from './SideBar.styled';
+import { SideBarNew } from '../SideBarNew/SideBarNew';
 
 export const Sidebar = ({ isSidebarOpen, onCloseSidebar }) => {
   useEffect(() => {
@@ -39,11 +33,7 @@ export const Sidebar = ({ isSidebarOpen, onCloseSidebar }) => {
   return (
     <>
       <Wrapper data-is-sidebar-open={isSidebarOpen}>
-        {/* <SidebarMenu onCloseSidebar={onCloseSidebar} />{' '} */}
         <SideBarNew onCloseSidebar={onCloseSidebar} />
-        {/* <LogOutWrapper>
-          <BtnLogOut />
-        </LogOutWrapper> */}
       </Wrapper>
 
       {isSidebarOpen && <Backdrop onClick={handleBackdropClick} />}
