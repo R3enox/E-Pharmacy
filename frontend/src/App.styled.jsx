@@ -13,8 +13,8 @@ export const AppWrapper = styled.div`
     padding: 32px;
   }
 
-  @media screen and (min-width: 1280px) {
-    width: 1280px;
+  @media screen and (min-width: 1440px) {
+    width: 1440px;
     padding: 32px;
   }
 `;

@@ -33,7 +33,6 @@ const getListCustomers = async (req, res, next) => {
 
 const getCustomerById = async (req, res) => {
   const { customerId } = req.params;
-  console.log(customerId);
   const result = await Customer.findById(customerId).select(
     "-createdAt -updatedAt"
   );

@@ -23,6 +23,12 @@ router.post(
   authController.singIn
 );
 
+router.get(
+  "/refresh",
+  validateBody(schemas.refreshSchema),
+  authController.refresh
+);
+
 router.get("/user-info", authenticate, authController.getCurrent);
 
 router.post("/logout", authenticate, authController.signOut);

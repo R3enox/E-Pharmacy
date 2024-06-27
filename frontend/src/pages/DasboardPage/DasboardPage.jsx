@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import API from '../../services/axios';
 import { TableWrapper, TablesContainer } from './DasboardPage.styled';
 import { RecentCustomers } from '../../components/RecentCustomers/RecentCustomers';
+import { Transaction } from '../../components/Transaction/Transaction';
 
 const DasboardPage = () => {
   const [dashboard, setDashboard] = useState(null);
@@ -42,6 +43,9 @@ const DasboardPage = () => {
           <TablesContainer>
             <TableWrapper>
               <RecentCustomers customers={dashboard.recentCustomers} />
+            </TableWrapper>
+            <TableWrapper>
+              <Transaction transactions={dashboard.recentTransactions} />
             </TableWrapper>
           </TablesContainer>
         </>

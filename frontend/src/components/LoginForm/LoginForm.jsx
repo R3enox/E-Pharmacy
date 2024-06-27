@@ -82,6 +82,7 @@ export const LoginForm = () => {
             />
             <img className="pillImg" srcSet={img.pillTabletPng} alt="Pill" />
           </picture>
+          <br />
           delivered Say goodbye to all{' '}
           <span className="fillWord">your healthcare </span>worries with us
         </h1>
@@ -103,31 +104,33 @@ export const LoginForm = () => {
               })}
             />
           </div>
-          <div className="inputWrapper">
-            <input
-              className={`inputForm ${errors?.password && 'error'} ${
-                dirtyFields.password && !errors.password && 'correct'
-              }`}
-              type={'password'}
-              placeholder="Password"
-              autoComplete="off"
-              {...register('password', {
-                required: 'Enter a valid Password',
-                minLength: {
-                  value: 7,
-                  message: 'Enter a valid Password*',
-                },
-                pattern: {
-                  value: '/^(?=.*[a-z])(?=.*[A-Z])(?=.*d)[a-zA-Zd]{8,}$/i',
-                  message: 'Enter a valid Password*',
-                },
-              })}
-            />
+          <div className="rightSide">
+            <div className="inputWrapper">
+              <input
+                className={`inputForm ${errors?.password && 'error'} ${
+                  dirtyFields.password && !errors.password && 'correct'
+                }`}
+                type={'password'}
+                placeholder="Password"
+                autoComplete="off"
+                {...register('password', {
+                  required: 'Enter a valid Password',
+                  minLength: {
+                    value: 7,
+                    message: 'Enter a valid Password*',
+                  },
+                  pattern: {
+                    value: '/^(?=.*[a-z])(?=.*[A-Z])(?=.*d)[a-zA-Zd]{8,}$/i',
+                    message: 'Enter a valid Password*',
+                  },
+                })}
+              />
+            </div>
           </div>
+          <button className="btnSigin" type="submit">
+            Log in
+          </button>
         </div>
-        <button className="btnSigin" type="submit">
-          Log in
-        </button>
       </form>
     </Section>
   );

@@ -4,15 +4,15 @@ import storage from 'redux-persist/lib/storage';
 
 import { initialState } from './userFunctionsReducer';
 import {
-  handleFulfilledCurrentUser,
+  handleFulfilledRefreshUser,
   handleFulfilledSignIn,
   handlePending,
   handleRejected,
-  handlePendingCurrentUser,
-  handleRejectedCurrentUser,
+  handlePendingRefreshUser,
+  handleRejectedRefreshUser,
 } from './userFunctionsReducer';
 
-import { logInThunk, logOutThunk, fetchCurrentThunk } from './userOperations';
+import { logInThunk, logOutThunk, refreshUser } from './userOperations';
 
 const STATUS = { PENDING: 'pending', REJECTED: 'rejected' };
 
@@ -34,9 +34,9 @@ const usersSlice = createSlice({
       .addCase(logOutThunk.fulfilled, () => {
         return initialState;
       })
-      .addCase(fetchCurrentThunk.pending, handlePendingCurrentUser)
-      .addCase(fetchCurrentThunk.fulfilled, handleFulfilledCurrentUser)
-      .addCase(fetchCurrentThunk.rejected, handleRejectedCurrentUser)
+      .addCase(refreshUser.pending, handlePendingRefreshUser)
+      .addCase(refreshUser.fulfilled, handleFulfilledRefreshUser)
+      .addCase(refreshUser.rejected, handleRejectedRefreshUser)
       .addMatcher(getActions(PENDING), handlePending)
       .addMatcher(getActions(REJECTED), handleRejected);
   },

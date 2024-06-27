@@ -7,7 +7,7 @@ export const logInThunk = createAsyncThunk(
   async (formData, thunkApi) => {
     try {
       const { data } = await API.post('/user/login', formData);
-      setAuthToken(data.token);
+      setAuthToken(data.accessToken);
       return data;
     } catch (error) {
       toastError(error.message);
@@ -30,26 +30,22 @@ export const logOutThunk = createAsyncThunk(
   }
 );
 
-export const fetchCurrentThunk = createAsyncThunk(
-  'users/current',
+export const refreshUser = createAsyncThunk(
+  'auth/user-info',
   async (_, { getState, rejectWithValue }) => {
     try {
-      const state = getState();
-      const accessToken = state.user.accessToken;
-      if (accessToken === null) {
-        return rejectWithValue('Unable to fetch user');
+      const persistedAccessToken = getState().user.accessToken;
+      if (persistedAccessToken === null) {
+        return rejectWithValue('Unable to fetch user info');
       }
-      setAuthToken(accessToken);
-      const { data } = await API.get('/users/current');
+
+      setAuthToken(persistedAccessToken);
+      const { data } = await API.get('/user/user-info');
+
       return data;
-    } catch ({ response }) {
-      const { status, data } = response;
-      const error = {
-        status,
-        message: data.message,
-      };
+    } catch (error) {
       toastError(error.message);
-      return rejectWithValue(error);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );

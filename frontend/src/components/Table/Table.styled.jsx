@@ -23,7 +23,6 @@ export const TableWrapper = styled.div`
 export const Table = styled.table`
   padding-right: ${(p) => p.theme.spacing(3.25)};
   padding-left: ${(p) => p.theme.spacing(3.25)};
-
   background-color: ${(p) => p.theme.colors.primaryBg};
   border: 1px solid ${(p) => p.theme.colors.border};
   border-top: 0;
@@ -31,8 +30,8 @@ export const Table = styled.table`
   border-spacing: 0;
 
   @media screen and (min-width: 768px) {
-    padding-right: ${(p) => p.theme.spacing(4.75)};
-    padding-left: ${(p) => p.theme.spacing(4.75)};
+    padding-right: ${(p) => p.theme.spacing(4.4)};
+    padding-left: ${(p) => p.theme.spacing(4.4)};
   }
 `;
 

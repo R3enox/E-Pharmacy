@@ -24,24 +24,24 @@ export const handleFulfilledSignIn = (state, { payload }) => {
   state.isLoading = false;
   state.isAuthenticated = true;
   state.isRefreshing = false;
-  state.accessToken = payload.token;
+  state.accessToken = payload.accessToken;
   state.refreshToken = payload.refreshToken;
   state.user = { email: payload.user.email };
   state.error = null;
 };
 
-export const handlePendingCurrentUser = (state) => {
+export const handlePendingRefreshUser = (state) => {
   state.isRefreshing = true;
   state.error = null;
 };
 
-export const handleFulfilledCurrentUser = (state, { payload }) => {
+export const handleFulfilledRefreshUser = (state, { payload }) => {
   state.isAuthenticated = true;
   state.isRefreshing = false;
   state.user = { email: payload.email, name: payload.name };
 };
 
-export const handleRejectedCurrentUser = (state) => {
+export const handleRejectedRefreshUser = (state) => {
   state.isRefreshing = false;
   state.isAuthenticated = false;
   state.user = initialState.user;

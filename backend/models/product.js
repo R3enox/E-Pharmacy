@@ -18,7 +18,13 @@ const productSchema = new Schema(
   {
     photo: { type: String, default: "" },
     name: { type: String, required: [true, "Customer info is required"] },
-    suppliers: { type: String, required: [true, "Suppliers is required"] },
+    suppliers: {
+      type: String,
+      required: [true, "Supplier info is required"],
+    },
+    supplier: {
+      type: String,
+    },
     stock: { type: String, required: [true, "Stock is required"] },
     price: { type: String, required: [true, "Price is required"] },
     category: {
@@ -33,6 +39,7 @@ const productSchema = new Schema(
 const productAddUpdateSchema = Joi.object({
   name: Joi.string().required(),
   suppliers: Joi.string().required(),
+  supplier: Joi.string(),
   stock: Joi.string().required(),
   price: Joi.string().required(),
   category: Joi.string().required(),

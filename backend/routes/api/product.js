@@ -31,7 +31,7 @@ router.put(
 router.delete(
   "/:productId",
   authenticate,
-  isValidId,
+  isValidId("productId"),
   productController.deleteProduct
 );
 

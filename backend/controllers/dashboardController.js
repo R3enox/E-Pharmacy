@@ -25,8 +25,6 @@ const getDashboard = async (req, res) => {
       .limit(Limits.TRANSACTIONS),
   ];
 
-  console.log(dbReqPromises);
-
   const [
     productsQuantity,
     suppliersQuantity,
@@ -34,14 +32,6 @@ const getDashboard = async (req, res) => {
     recentCustomers,
     recentTransactions,
   ] = await Promise.all(dbReqPromises);
-
-  console.log({
-    productsQuantity,
-    suppliersQuantity,
-    customersQuantity,
-    recentCustomers,
-    recentTransactions,
-  });
 
   return res.json({
     productsQuantity,

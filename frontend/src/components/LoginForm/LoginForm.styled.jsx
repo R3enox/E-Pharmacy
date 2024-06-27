@@ -31,14 +31,13 @@ export const Section = styled.section`
   .pillImg {
     position: absolute;
     top: -60px;
-    right: 20px;
+    right: 30px;
   }
 
   .inputContainer {
     display: flex;
     flex-direction: column;
     gap: 14px;
-    margin-bottom: 40px;
   }
 
   .inputForm {
@@ -63,5 +62,57 @@ export const Section = styled.section`
     font-size: 14px;
     line-height: 1.29;
     color: #fff;
+  }
+
+  .rightSide {
+    margin-bottom: 40px;
+  }
+
+  @media screen and (min-width: 768px) {
+    padding-right: 32px;
+    padding-left: 32px;
+
+    .logoWrapper {
+      margin-bottom: 204px;
+    }
+
+    .formTitle {
+      font-size: 54px;
+      line-height: 1.11;
+      max-width: 634px;
+      margin-bottom: 50px;
+    }
+
+    .pillImg {
+      position: absolute;
+      top: -105px;
+      right: 40px;
+    }
+
+    .inputContainer {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-width: 323px;
+      margin-bottom: 40px;
+    }
+
+    .btnSigin {
+      max-width: 323px;
+      padding: 13px 141px;
+    }
+  }
+
+  @media screen and (min-width: 1440px) {
+    .smbForm {
+      display: flex;
+      flex-direction: row;
+      gap: 150px;
+    }
+
+    .rightSide {
+      display: flex;
+      flex-direction: column;
+    }
   }
 `;

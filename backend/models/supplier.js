@@ -1,7 +1,6 @@
 const { Schema, model } = require("mongoose");
 const Joi = require("joi");
 const { handleMongooseError } = require("../helpers");
-// const dateValidator = require("../helpers/dateValidator");
 
 const statuses = ["Active", "Deactive"];
 
@@ -9,10 +8,12 @@ const supplierSchema = new Schema(
   {
     name: { type: String, required: [true, "Customer info is required"] },
     address: { type: String, required: [true, "Address is required"] },
-    suppliers: { type: String, required: [true, "Suppliers is required"] },
+    suppliers: {
+      type: String,
+      required: [true, "Supplier info is required"],
+    },
     date: {
       type: String,
-      // validate: dateValidator,
       required: [true, "Date is required"],
     },
     amount: { type: String, require: [true, "Amount is required"] },

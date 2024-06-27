@@ -1,143 +1,93 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-export const IconNav = styled.svg`
-  width: 14px;
-  height: 14px;
-  fill: ${({ isActive }) => (isActive ? '#59b17a' : '#dcdddf')};
-
-  &.active {
-    fill: #59b17a;
-
-    &:hover,
-    &:focus {
-      transition-duration: 300ms;
-    }
-  }
-
-  &.headerLink {
-    fill: #dcdddf;
-    &:hover,
-    &:focus {
-      transition-duration: 300ms;
-    }
-  }
-`;
-
-export const BackDrop = styled.div`
-  ${({ open }) =>
-    open &&
-    css`
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 1;
-      background: rgba(29, 30, 33, 0.3);
-      z-index: 99;
-      overflow: hidden;
-
-      .iconBurger {
-        display: none;
-      }
-    `}
-`;
-
-export const IconWrapper = styled.nav`
-  display: flex;
-  gap: 10px;
-
-  .iconBtn {
-    border: none;
-    background-color: transparent;
-    width: 32px;
-    height: 32px;
-  }
-
-  .iconBurger {
-    stroke: black;
-    width: 32px;
-    height: 32px;
-  }
-
-  .iconClose {
-    position: absolute;
-    top: 32px;
-    right: 14px;
-    width: 32px;
-    height: 32px;
-    stroke: #1d1e21;
-  }
-
-  .listMenu {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-`;
-
-export const Button = styled.button`
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 1001;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-`;
-
-export const SideBarMenu = styled.div`
+export const Wrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  height: 100%;
+  z-index: 100;
+
+  flex-shrink: 0;
+  display: ${(p) => (p['data-is-sidebar-open'] ? 'flex' : 'none')};
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: ${(p) => p.theme.spacing(2)};
   width: 78px;
-  background-color: #f7f8fa;
-  transform: translateX(-100%);
-  transition: transform 0.3s ease-in-out;
-  display: flex;
-  padding: 92px 20px;
-  overflow-y: none;
+  height: 100%;
+  padding-top: ${(p) => p.theme.spacing(23)};
+  padding-bottom: ${(p) => p.theme.spacing(5)};
 
-  ${({ open }) =>
-    open &&
-    css`
-      transform: translateX(0);
-    `}
+  background-color: ${(p) => p.theme.colors.pageBg};
+  border-right: 1px solid ${(p) => p.theme.colors.border};
 
-  .wrapper {
+  @media screen and (min-width: 768px) {
+    width: 84px;
+    padding-top: ${(p) => p.theme.spacing(25)};
+  }
+
+  @media screen and (min-width: 1440px) {
+    position: static;
+
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    width: 80px;
+    height: auto;
+    padding-top: ${(p) => p.theme.spacing(10)};
   }
 
-  .iconBtnNav {
-    width: 38px;
-    height: 38px;
-    border: none;
-    border-radius: 100%;
-    background-color: #fff;
+  @media screen and (max-height: 444px) and (min-width: 768px) and (max-width: 1439px) {
+    padding-top: ${(p) => p.theme.spacing(16)};
   }
 
-  .btnLogout {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 38px;
-    height: 38px;
-    border: none;
-    border-radius: 100%;
-    background-color: #59b17a;
-  }
-
-  .iconLogout {
-    width: 14px;
-    height: 14px;
-    fill: #f7f8fa;
+  @media screen and (max-height: 404px) and (max-width: 767px) {
+    padding-top: ${(p) => p.theme.spacing(14)};
   }
 `;
 
-export const MenuContent = styled.div`
-  padding: 20px;
-  color: white;
+export const BtnClose = styled.button`
+  position: absolute;
+  top: 20px;
+  right: 14px;
+
+  padding: 0;
+  width: 32px;
+  height: 32px;
+
+  color: ${(p) => p.theme.colors.primaryText};
+
+  border: none;
+  background-color: transparent;
+
+  transition: ${(p) => p.theme.transition('color')};
+
+  &:hover,
+  &:focus {
+    color: ${(p) => p.theme.colors.green()};
+  }
+
+  @media screen and (min-width: 1440px) {
+    display: none;
+  }
+`;
+
+export const IconCross = styled.svg`
+  width: 100%;
+  height: 100%;
+
+  stroke: currentColor;
+`;
+
+export const LogOutWrapper = styled.div`
+  @media screen and (min-width: 1440px) {
+    display: none;
+  }
+`;
+
+export const Backdrop = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: ${(p) => p.theme.colors.backdrop};
 `;

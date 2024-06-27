@@ -1,40 +1,49 @@
 import sprite from '../../assets/sprite.svg';
-import { StatisticList } from './Statistic.styled';
+import {
+  IconStatistic,
+  ListStatistic,
+  StatisticItem,
+  Title,
+  TitleWrapper,
+  Value,
+} from './Statistic.styled';
 
 export const Statistic = ({
   productsQuantity,
   suppliersQuantity,
   customersQuantity,
 }) => {
+  const statisticList = [
+    {
+      title: 'All products',
+      icon: sprite + '#icon-coins',
+      value: productsQuantity,
+    },
+    {
+      title: 'All suppliers',
+      icon: sprite + '#icon-users',
+      value: suppliersQuantity,
+    },
+    {
+      title: 'All customers',
+      icon: sprite + '#icon-users',
+      value: customersQuantity,
+    },
+  ];
+
   return (
-    <StatisticList>
-      <li className="listItem">
-        <div className="svgWrapper">
-          <svg className="iconStat">
-            <use href={sprite + '#icon-coins'} />
-          </svg>
-          <p className="descItem">All products</p>
-        </div>
-        <p>{productsQuantity}</p>
-      </li>
-      <li className="listItem">
-        <div className="svgWrapper">
-          <svg className="iconStat">
-            <use href={sprite + '#icon-coins'} />
-          </svg>
-          <p className="descItem">All suppliers</p>
-        </div>
-        <p>{suppliersQuantity}</p>
-      </li>
-      <li className="listItem">
-        <div className="svgWrapper">
-          <svg className="iconStat">
-            <use href={sprite + '#icon-users'} />
-          </svg>
-          <p className="descItem">All Customers </p>
-        </div>
-        <p>{customersQuantity}</p>
-      </li>
-    </StatisticList>
+    <ListStatistic>
+      {statisticList.map((item, index) => (
+        <StatisticItem key={index}>
+          <TitleWrapper>
+            <IconStatistic>
+              <use href={item.icon}></use>
+            </IconStatistic>
+            <Title>{item.title}</Title>
+          </TitleWrapper>
+          <Value>{item.value.toLocaleString('en-US')}</Value>
+        </StatisticItem>
+      ))}
+    </ListStatistic>
   );
 };

@@ -1,5 +1,7 @@
 const { Product } = require("../models/product");
 const { ctrlWrapper, setPaginationOptions, HttpError } = require("../helpers");
+const { categories } = require("../constants/constants");
+const { Supplier } = require("../models/supplier");
 
 const getListProducts = async (req, res, next) => {
   const { page = 1, limit = 5, name } = req.query;
@@ -28,7 +30,17 @@ const getListProducts = async (req, res, next) => {
     },
   ]);
 
-  res.json({ paginatedResult, totalCount });
+  const suppliers = await Supplier.find({}, "suppliers").exec();
+  const suppliersResponse = suppliers.map((doc) => ({
+    suppliers: doc,
+  }));
+
+  res.json({
+    paginatedResult,
+    totalCount,
+    categories: categories,
+    suppliers: suppliersResponse,
+  });
 };
 
 const addProduct = async (req, res) => {
