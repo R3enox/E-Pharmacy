@@ -16,8 +16,10 @@ export const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(refreshUser());
-    setIsFirstRender(false);
+    if (isFirstRender) {
+      dispatch(refreshUser());
+      setIsFirstRender(false);
+    }
   }, [dispatch]);
 
   if (isRefreshing || isFirstRender) return null;
